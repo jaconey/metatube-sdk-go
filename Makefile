@@ -45,7 +45,6 @@ WINDOWS_ARCH_LIST = \
 
 all: development
 
-development: BUILD_TAGS += experimental
 development:
 	$(GO_BUILD) -o $(BUILD_DIR)/$(SERVER_NAME) $(SERVER_CODE)
 

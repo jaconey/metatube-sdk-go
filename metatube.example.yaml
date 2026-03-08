@@ -1,0 +1,41 @@
+# MetaTube Configuration File
+#
+# Place this file at /config/metatube.yaml (default path) or specify
+# a custom path with the -config flag.
+#
+# In Docker, mount a directory containing this file:
+#   docker run -v ./config:/config ...
+#
+# All providers are ENABLED by default. Use this file to disable
+# specific providers or customize their settings.
+
+providers:
+  # Example: Disable a provider
+  # fanza:
+  #   enabled: false
+
+  # Example: Set custom priority (higher = preferred)
+  # avbase:
+  #   enabled: true
+  #   priority: 3.5
+
+  # Example: Set proxy for a specific provider
+  # javbus:
+  #   proxy: "socks5://proxy:1080"
+
+  # Example: Set request timeout for a specific provider
+  # mgstage:
+  #   timeout: "30s"
+
+  # Example: Set API token for a provider
+  # theporndb:
+  #   token: "your-api-token"
+
+  # Available providers:
+  #   10musume, 1pondo, av-league, avbase, aventertainments,
+  #   c0930, caribbeancom, caribbeancompr, dahlia, duga,
+  #   faleno, fanza, fc2, fc2hub, fc2ppvdb, gcolle, getchu,
+  #   gfriends, h0930, h4610, heydouga, heyzo, jav321,
+  #   javbus, javfree, kin8tengoku, madouqu, mgstage,
+  #   modelmediaasia, muramura, mywife, pacopacomama, pcolle,
+  #   sod, theporndb, tokyo-hot

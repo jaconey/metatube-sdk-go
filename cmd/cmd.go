@@ -18,10 +18,11 @@ import (
 
 var Config = &struct {
 	// main config
-	Bind  string
-	Port  string
-	Token string
-	DSN   string
+	Bind       string
+	Port       string
+	Token      string
+	DSN        string
+	ConfigFile string
 
 	// engine config
 	RequestTimeout time.Duration
@@ -48,6 +49,7 @@ func init() {
 	flag.StringVar(&Config.Port, "port", "8080", "Port number of server")
 	flag.StringVar(&Config.Token, "token", "", "Token to access server")
 	flag.StringVar(&Config.DSN, "dsn", "", "Database Service Name")
+	flag.StringVar(&Config.ConfigFile, "config", envconfig.DefaultConfigPath, "Path to YAML config file")
 	flag.DurationVar(&Config.RequestTimeout, "request-timeout", engine.DefaultRequestTimeout, "Timeout per request")
 	flag.IntVar(&Config.DBMaxIdleConns, "db-max-idle-conns", 0, "Database max idle connections")
 	flag.IntVar(&Config.DBMaxOpenConns, "db-max-open-conns", 0, "Database max open connections")
@@ -66,6 +68,12 @@ func Router(names ...string) *gin.Engine {
 		DisableAutomaticPing: true,
 	})
 	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Load config file
+	isDefaultPath := Config.ConfigFile == envconfig.DefaultConfigPath
+	if err := envconfig.LoadConfigFile(Config.ConfigFile, isDefaultPath); err != nil {
 		log.Fatal(err)
 	}
 

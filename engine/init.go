@@ -3,6 +3,8 @@ package engine
 import (
 	"log"
 	"os"
+	"slices"
+	"strings"
 
 	"github.com/metatube-community/metatube-sdk-go/common/fetch"
 	mt "github.com/metatube-community/metatube-sdk-go/provider"
@@ -13,7 +15,25 @@ func (e *Engine) init() *Engine {
 	e.initFetcher()
 	e.initActorProviders()
 	e.initMovieProviders()
+	e.logEnabledProviders()
 	return e
+}
+
+func (e *Engine) logEnabledProviders() {
+	var actorNames []string
+	for name := range e.actorProviders.Iterator() {
+		actorNames = append(actorNames, name)
+	}
+	slices.Sort(actorNames)
+
+	var movieNames []string
+	for name := range e.movieProviders.Iterator() {
+		movieNames = append(movieNames, name)
+	}
+	slices.Sort(movieNames)
+
+	e.logger.Printf("Enabled actor providers (%d): %s", len(actorNames), strings.Join(actorNames, ", "))
+	e.logger.Printf("Enabled movie providers (%d): %s", len(movieNames), strings.Join(movieNames, ", "))
 }
 
 func (e *Engine) initLogger() {

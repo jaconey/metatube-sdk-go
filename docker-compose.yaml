@@ -12,6 +12,7 @@ services:
       - HTTPS_PROXY=
     volumes:
       - run:/var/run
+      - ./config:/config
     command: -dsn "postgres://metatube:metatube@/metatube?host=/var/run/postgresql" -port 8080 -db-auto-migrate -db-prepared-stmt
 
   postgres:
