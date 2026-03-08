@@ -31,7 +31,7 @@ providers:
 
 	tmpDir := t.TempDir()
 	configPath := filepath.Join(tmpDir, "metatube.yaml")
-	err := os.WriteFile(configPath, []byte(configYAML), 0644)
+	err := os.WriteFile(configPath, []byte(configYAML), 0o644)
 	require.NoError(t, err)
 
 	err = LoadConfigFile(configPath, false)
@@ -93,7 +93,7 @@ providers:
 `
 	tmpDir := t.TempDir()
 	configPath := filepath.Join(tmpDir, "metatube.yaml")
-	err := os.WriteFile(configPath, []byte(configYAML), 0644)
+	err := os.WriteFile(configPath, []byte(configYAML), 0o644)
 	require.NoError(t, err)
 
 	err = LoadConfigFile(configPath, false)

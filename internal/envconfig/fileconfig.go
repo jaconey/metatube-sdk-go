@@ -5,8 +5,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/metatube-community/metatube-sdk-go/collection/maps"
 	"gopkg.in/yaml.v3"
+
+	"github.com/metatube-community/metatube-sdk-go/collection/maps"
 )
 
 const DefaultConfigPath = "/config/metatube.yaml"
